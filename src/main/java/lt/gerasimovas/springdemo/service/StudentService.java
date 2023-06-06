@@ -42,11 +42,27 @@ public class StudentService {
         return stud;
     }
 
-    public List<Student> removeStudentWithStreams(long id){
+    public List<Student> removeStudentWithStreams(long id) {
         students.removeIf(student -> student.getId() == id);
-
         return students;
     }
 
 
+    public Student getStudentById(long id) {
+       Student studentToGet =
+                students.stream()
+                        .filter(stud -> stud.getId().equals(id))
+                        .findFirst().orElseThrow();
+        return studentToGet;
+    }
+
+
+    public List<Student> updateStudentById(long id, Student student) {
+        Student updateStudent = getStudentById(id);
+        updateStudent.setName(student.getName());
+        updateStudent.setSurName(student.getSurName());
+        updateStudent.setCourse(student.getCourse());
+
+        return students;
+    }
 }

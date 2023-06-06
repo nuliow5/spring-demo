@@ -39,7 +39,29 @@ public class StudentController {
 
         model.addAttribute("students", students);
         return "students_list_form";
-
     }
+
+    @GetMapping("/update/{id}")
+    public String editStudent(@PathVariable("id") long id, Model model){
+       Student student = studentService.getStudentById(id);
+
+        model.addAttribute("student", student);
+
+        return "edit-student";
+    }
+
+    @PostMapping("/update/{id}")
+    public String editStudent(@PathVariable("id") long id, @ModelAttribute Student student, Model model){
+        List<Student> students = studentService.updateStudentById(id, student);
+
+        model.addAttribute("students", students);
+
+        return "students_list_form";
+    }
+
+
+
+
+
 
 }
