@@ -5,55 +5,47 @@ import lt.gerasimovas.springdemo.model.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Getter
 public class StudentService {
-    List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
+    private Map<Long, Student> studentsMap = new HashMap<>();
     Long index = 1L;
 
-    public List<Student> createStudents(Student student){
+    public List<Student> createStudents(Student student) {
         student.setId(index);
-        index++;
         students.add(student);
 
-        System.out.println(student);
-
+        studentsMap.put(index, student);
+        index++;
 
         return students;
     }
 
-    public Map<Long, Student> toHashMap(){
-        Map<Long, Student> maps = new HashMap<>();
-        for (int i = 0; i < students.size(); i++) {
-            maps.put(students.get(i).getId(), students.get(i));
-        }
 
-        return maps;
+    public List<Student> removeStudent(long id) {
+        studentsMap.remove(id);
+        List<Student> students = new ArrayList<>(studentsMap.values());
+        return students;
     }
 
-    public List<Student> removeStudent(long id){
-        Map<Long, Student> studentMap = toHashMap();
-
-        studentMap.remove(id);
-
-        Collection<Student> values = studentMap.values();
-
-        List<Student> newStudentList = new ArrayList<>((Collection) studentMap);
-
-        return newStudentList;
-
-    }
-
-    public ArrayList<Student> removeStudent2(long id){
+    public List<Student> removeStudent2(long id) {
         List<Student> stud = students;
         for (int i = 0; i < stud.size(); i++) {
-            if (stud.get(i).getId() == id){
+            if (stud.get(i).getId() == id) {
                 stud.remove(i);
             }
         }
 
-        return (ArrayList<Student>) stud;
+        return stud;
+    }
+
+    public List<Student> removeStudentWithStreams(long id){
+        students.removeIf(student -> student.getId() == id);
+
+        return students;
     }
 
 

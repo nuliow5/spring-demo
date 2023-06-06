@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class StudentController {
@@ -31,9 +32,10 @@ public class StudentController {
         return "students_list_form";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") long id, Model model){
-        List<Student> students = studentService.removeStudent2(id);
+//        List<Student> students = studentService.removeStudent(id);
+        List<Student> students = studentService.removeStudentWithStreams(id);
 
         model.addAttribute("students", students);
         return "students_list_form";
