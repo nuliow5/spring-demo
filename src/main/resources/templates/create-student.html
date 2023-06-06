@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/create}" method="post" th:object="${student}">
+<form action="#" th:action="@{/student/create}" method="post" th:object="${student}">
     <label>First name:</label><br>
     <input type="text" th:field="*{name}"/><br/>
     <label>Last name:</label><br>

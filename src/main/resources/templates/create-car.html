@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/car/car-create}" method="post" th:object="${car}">
+    <label>First name:</label><br>
+    <input type="text" th:field="*{name}"/><br/>
+    <label>Engine Size Displacement:</label><br>
+    <input type="number" th:field="*{engineSizeDisplacement}"/><br/>
+    <label>Fuel Type</label><br/>
+
+    <select th:field="*{fuelType}">
+        <option th:each="fuelType : ${T(lt.gerasimovas.springdemo.model.Fuel).values()}"
+                th:value="${fuelType}"
+                th:text="${fuelType}">
+        </option>
+    </select>
+    <br/>
+
+    <!--    <input type="text" th:field="*{fuelType}">-->
+    <label>Weight:</label><br/>
+    <input type="text" th:field="*{weight}"><br/><br/>
+    <button type="submit">Create car</button>
+</form>
+</body>
+</html>

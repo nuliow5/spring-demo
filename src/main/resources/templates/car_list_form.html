@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table th {
+            background-color: #9a9a0a;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<table id="cars">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Engine Size Displacement</th>
+        <th>Fuel Type</th>
+        <th>Weight</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}">Id</td>
+        <td th:text="${car.name}">Name</td>
+        <td th:text="${car.engineSizeDisplacement}">Engine size displacement</td>
+        <td th:text="${car.fuelType}">Fuel type</td>
+        <td th:text="${car.weight}">Weight</td>
+        <td><a th:href="@{/car/delete/{id}(id=${car.id})}">Delete</a></td>
+        <td><a th:href="@{/car/update/{id}(id=${car.id})}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/car/car-create}">Create car</a>
+<a th:href="@{/car/sort}">Sort by engine</a>
+</body>
+</html>

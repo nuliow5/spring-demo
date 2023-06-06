@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        table th{
+            background-color: #9a9a0a;
+        }
         table, th, td {
             border: 1px solid black;
         }
@@ -26,13 +33,13 @@
                 <td th:text="${student.name}">Name</td>
                 <td th:text="${student.surName}">Surname</td>
                 <td th:text="${student.course}">Course</td>
-                <td><a th:href="@{/delete/{id}(id=${student.id})}">Delete</a></td>
-                <td><a th:href="@{/update/{id}(id=${student.id})}">Edit</a></td>
+                <td><a th:href="@{/student/delete/{id}(id=${student.id})}">Delete</a></td>
+                <td><a th:href="@{/student/update/{id}(id=${student.id})}">Edit</a></td>
             </tr>
         </tbody>
     </table>
 
-    <a th:href="@{/create}">Create new student</a>
+    <a th:href="@{/student/create}">Create new student</a>
 
 </body>
 </html>

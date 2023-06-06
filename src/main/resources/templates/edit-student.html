@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/update/{id}(id=${student.id})}" method="post" th:object="${student}">
+<form action="#" th:action="@{/student/update/{id}(id=${student.id})}" method="post" th:object="${student}">
     <label>First name:</label><br>
     <input type="text" th:field="*{name}"/><br/>
     <label>Last name:</label><br>
